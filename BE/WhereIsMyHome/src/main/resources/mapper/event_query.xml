@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.myhouse.dao.EventDao"> <!-- @Mapper annotation 있는 dao -->
+	
+	<select id="findById" parameterType="int" resultType="com.mycom.myhouse.domain.Event">
+		SELECT event_id, event_name, event_from, event_to
+		FROM event
+		WHERE event_id = #{eventId}
+	</select>
+	
+	<select id="findByName" parameterType="string" resultType="com.mycom.myhouse.domain.Event">
+		SELECT event_id, event_name, event_from, event_to
+		FROM event
+		WHERE event_name = #{eventName}
+	</select>
+	
+	<select id="findAll" resultType="com.mycom.myhouse.domain.Event">
+		SELECT event_id, event_name, event_from, event_to
+		FROM event
+	</select>
+	
+	<insert id="insertEvent" parameterType="com.mycom.myhouse.domain.Event">
+		INSERT INTO event (event_name, event_from, event_to)
+		VALUES (#{eventName}, #{eventFrom}, #{eventTo})
+	</insert>
+	
+	<delete id="deleteEvent" parameterType="int">
+		DELETE FROM event 
+		WHERE event_id = #{eventId}
+	</delete>
+	
+	
+</mapper>

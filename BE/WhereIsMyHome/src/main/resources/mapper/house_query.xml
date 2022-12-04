@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.mycom.myhouse.dao.HouseDao"> <!-- @Mapper annotation 있는 dao -->
+	
+	<select id="findSido" resultType="com.mycom.myhouse.domain.Address">
+		SELECT *
+		FROM sido_code
+	</select>
+	
+	<select id="findGugun" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.Address">
+		SELECT *
+		FROM gugun_code
+		WHERE sido_code = #{sidoCode}
+	</select>
+	
+	<select id="findDong" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.Address">
+		SELECT *
+		FROM dong_code
+		WHERE gugun_code = #{gugunCode}
+	</select>
+	
+	<select id="findAddress" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.Address">
+		SELECT *
+		FROM dong_code
+		WHERE code = #{dongCode}
+	</select>
+	
+	<select id="findHouse" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.House">
+		SELECT *
+		FROM view_house
+		WHERE (dong = #{name} AND code = #{gugunCode})
+	</select>
+	
+	<select id="findHouseDeal" parameterType="int" resultType="com.mycom.myhouse.domain.HouseDeal">
+		SELECT *
+		FROM housedeal
+		WHERE house_no = #{houseNo};
+	</select>
+	
+</mapper>

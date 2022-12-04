@@ -1,0 +1,7 @@
+/.metadata/
+
+# Tomcat server
+/Servers
+
+# log file
+/WhereIsMyHome/log/*
