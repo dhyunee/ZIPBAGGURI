@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.mycom.myhouse.dao.BoardDao">
+   
+    <select id="findById" parameterType="int" resultType="com.mycom.myhouse.domain.Board">
+    	SELECT *
+    	  FROM board
+    	  WHERE board_id=#{boardId}
+    </select>
+    
+    <select id="findBySearchParams" parameterType="map" resultType="com.mycom.myhouse.domain.Board">
+    	SELECT *
+    	  FROM board
+    	WHERE board_title LIKE CONCAT('%',#{title},'%')
+    	<if test="sidoCode != null">
+    		AND sido_code = #{sidoCode}
+    	</if>
+    	<if test="gugunCode != null">
+    		AND gugun_code = #{gugunCode}
+    	</if>
+    	<if test="dongCode != null">
+    		AND dong_code = #{dongCode}
+    	</if>
+    	<choose>
+	    	<when test="type != null">
+	    		AND user_seq = 1
+	    	</when>
+	    	<otherwise>
+	    		AND user_seq != 1
+	    	</otherwise>
+    	</choose>
+    	ORDER BY board_id DESC
+    	<if test="limit > 0">
+    		LIMIT #{limit}
+    	</if>
+    </select>
+    
+    <select id="findAll" resultType="com.mycom.myhouse.domain.Board">
+    	SELECT *
+    	  FROM board
+    	ORDER BY board_id DESC
+    </select>
+    
+    <update id="readBoard" parameterType="int">
+    	UPDATE board
+    	SET read_count = read_count + 1
+    	 WHERE board_id = #{boardId}
+    </update>
+    
+    <insert id="insertBoard" parameterType="com.mycom.myhouse.domain.Board">
+    	INSERT INTO board( board_title, board_content, board_register_date, user_seq, show_address, sido_code, sido_name, gugun_code, gugun_name, dong_code, dong_name )
+    	VALUES ( #{boardTitle}, #{boardContent}, now(), #{userSeq}, #{showAddress}, #{sidoCode}, #{sidoName}, #{gugunCode}, #{gugunName}, #{dongCode}, #{dongName})
+    </insert>
+    
+    <update id="updateBoard" parameterType="com.mycom.myhouse.domain.Board">
+    	UPDATE board
+    	SET board_title = #{boardTitle},
+    		board_content = #{boardContent}, 
+    		show_address = #{showAddress},
+    		sido_code = #{sidoCode},
+    		sido_name = #{sidoName},
+    		gugun_code = #{gugunCode},
+    		gugun_name = #{gugunName},
+    		dong_code = #{dongCode},
+    		dong_name = #{dongName}
+    	 WHERE board_id = #{boardId}
+    </update>
+    
+    <delete id="deleteBoard" parameterType="int">
+    	DELETE FROM board
+    	 WHERE board_id=#{boardId}
+    </delete>
+    
+</mapper>

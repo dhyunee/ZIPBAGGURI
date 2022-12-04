@@ -15,6 +15,7 @@ public class House {
 	private Double lat;
 	private Double lng;
 	private Double avgArea;
-	private Double avgDealAmount;
+	private String jibun;
+	private int avgDealAmount;
 
 }

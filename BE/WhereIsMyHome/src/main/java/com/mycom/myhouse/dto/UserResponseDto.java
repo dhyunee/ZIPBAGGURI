@@ -14,7 +14,7 @@ public class UserResponseDto {
 	private int userSeq;
 	private String userName;
 	private String userEmail;
-	private LocalDateTime userRegistDate;
+	private LocalDateTime userRegisterDate;
 	private int userClsf;
 	private String sidoCode;
 	private String sidoName;
@@ -29,7 +29,7 @@ public class UserResponseDto {
 		userResponseDto.userSeq = user.getUserSeq();
 		userResponseDto.userName = user.getUserName();
 		userResponseDto.userEmail = user.getUserEmail();
-		userResponseDto.userRegistDate = user.getUserRegistDate();
+		userResponseDto.userRegisterDate = user.getUserRegisterDate();
 		userResponseDto.userClsf = user.getUserClsf();
 		userResponseDto.sidoCode = user.getSidoCode();
 		userResponseDto.sidoName = user.getSidoName();

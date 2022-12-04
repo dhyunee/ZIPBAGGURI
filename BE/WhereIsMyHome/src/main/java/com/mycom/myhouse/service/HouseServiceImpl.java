@@ -9,7 +9,6 @@ import com.mycom.myhouse.dao.HouseDao;
 import com.mycom.myhouse.domain.Address;
 import com.mycom.myhouse.domain.House;
 import com.mycom.myhouse.domain.HouseDeal;
-import com.mycom.myhouse.dto.HouseRequestDto;
 
 @Service
 public class HouseServiceImpl implements HouseService {
@@ -24,32 +23,38 @@ public class HouseServiceImpl implements HouseService {
 	}
 
 	@Override
-	public List<Address> getGugun(HouseRequestDto houseRequestDto) {
-		Address sido = houseRequestDto.toSido();
+	public List<Address> getAddress(String code) {
+		if (code.length() == 2) {
+			return houseDao.findGugun(code);
+		} else if (code.length() == 5) {
+			return houseDao.findDong(code);
+		} 
+		return null;
+	}
+	
+	@Override
+	public List<House> getHouseList(String code) {
+		if (code.length() == 5) {
+			Address address = Address.createGugun(code);
+			return houseDao.findHouseFromGugun(address);
+		} else if (code.length() == 10) {
+			Address address = houseDao.findAddress(code);
+			return houseDao.findHouseFromDong(address);
+		}
 		
-		return houseDao.findGugun(sido);
+		return null;
 	}
 
 	@Override
-	public List<Address> getDong(HouseRequestDto houseRequestDto) {
-		Address gugun = houseRequestDto.toGugun();
-		
-		return houseDao.findDong(gugun);
+	public House getHouseInfo(int houseNo) {
+		return houseDao.findHouseInfo(houseNo);
 	}
-
+	
 	@Override
-	public List<House> getHouseList(HouseRequestDto houseRequestDto) {
-		Address dong = houseRequestDto.toDong();
-		Address address = houseDao.findAddress(dong);
-		
-		return houseDao.findHouse(address);
-	}
-
-	@Override
-	public List<HouseDeal> getHouseDealList(HouseRequestDto houseRequestDto) {
-		int houseNo = houseRequestDto.getHouseNo();
-		
+	public List<HouseDeal> getHouseDealList(int houseNo) {
 		return houseDao.findHouseDeal(houseNo);
 	}
+	
+
 
 }

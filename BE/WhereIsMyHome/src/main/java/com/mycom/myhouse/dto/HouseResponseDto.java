@@ -12,19 +12,22 @@ public class HouseResponseDto {
 
 	private int no;
 	private String aptName;
-	// private String dong;
+	private String dong;
+	private String jibun; 
 	// private String code;
 	private int buildYear;
 	private Double lat;
 	private Double lng;
 	private Double avgArea;
-	private Double avgDealAmount;
+	private int avgDealAmount;
 	
 	public static HouseResponseDto from(House house) {
 		HouseResponseDto houseResponseDto = new HouseResponseDto();
 		
 		houseResponseDto.no = house.getNo();
 		houseResponseDto.aptName = house.getAptName();
+		houseResponseDto.dong = house.getDong();
+		houseResponseDto.jibun = house.getJibun();
 		houseResponseDto.buildYear = house.getBuildYear();
 		houseResponseDto.lat = house.getLat();
 		houseResponseDto.lng = house.getLng();

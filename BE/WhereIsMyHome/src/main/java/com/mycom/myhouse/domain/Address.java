@@ -33,5 +33,9 @@ public class Address {
 		
 		return address;
 	}
+	
+	public void toGugun() {
+		this.gugunCode = this.code;
+	}
 
 }

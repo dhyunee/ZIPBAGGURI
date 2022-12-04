@@ -5,14 +5,13 @@ import java.util.List;
 import com.mycom.myhouse.domain.Address;
 import com.mycom.myhouse.domain.House;
 import com.mycom.myhouse.domain.HouseDeal;
-import com.mycom.myhouse.dto.HouseRequestDto;
 
 public interface HouseService {
 	
 	List<Address> getSido();
-	List<Address> getGugun(HouseRequestDto houseRequestDto);
-	List<Address> getDong(HouseRequestDto houseRequestDto);
+	List<Address> getAddress(String code);
 	
-	List<House> getHouseList(HouseRequestDto houseRequestDto);
-	List<HouseDeal> getHouseDealList(HouseRequestDto houseRequestDto);
+	List<House> getHouseList(String code);
+	House getHouseInfo(int houseNo);
+	List<HouseDeal> getHouseDealList(int houseNo);
 }

@@ -13,7 +13,7 @@ public class User {
 	private String userName;
 	private String userPassword;
 	private String userEmail;
-	private LocalDateTime userRegistDate;
+	private LocalDateTime userRegisterDate;
 	private int userClsf;
 	private String sidoCode;
 	private String sidoName;

@@ -7,34 +7,51 @@
 		FROM sido_code
 	</select>
 	
-	<select id="findGugun" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.Address">
+	<select id="findGugun" parameterType="string" resultType="com.mycom.myhouse.domain.Address">
 		SELECT *
 		FROM gugun_code
-		WHERE sido_code = #{sidoCode}
+		WHERE sido_code = #{code}
+		ORDER BY name
 	</select>
 	
-	<select id="findDong" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.Address">
+	<select id="findDong" parameterType="string" resultType="com.mycom.myhouse.domain.Address">
 		SELECT *
 		FROM dong_code
-		WHERE gugun_code = #{gugunCode}
+		WHERE gugun_code = #{code}
+		ORDER BY name
 	</select>
 	
-	<select id="findAddress" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.Address">
+	<select id="findAddress" parameterType="string" resultType="com.mycom.myhouse.domain.Address">
 		SELECT *
 		FROM dong_code
-		WHERE code = #{dongCode}
+		WHERE code = #{code}
 	</select>
 	
-	<select id="findHouse" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.House">
+	<select id="findHouseFromGugun" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.House">
+		SELECT *
+		FROM view_house
+		WHERE code = #{gugunCode}
+		ORDER BY sorting_no, AptName
+	</select>
+	
+	<select id="findHouseFromDong" parameterType="com.mycom.myhouse.domain.Address" resultType="com.mycom.myhouse.domain.House">
 		SELECT *
 		FROM view_house
 		WHERE (dong = #{name} AND code = #{gugunCode})
+		ORDER BY sorting_no, AptName
+	</select>
+	
+	<select id="findHouseInfo" parameterType="int" resultType="com.mycom.myhouse.domain.House">
+		SELECT *
+		FROM view_house
+		WHERE no = #{houseNo}
 	</select>
 	
 	<select id="findHouseDeal" parameterType="int" resultType="com.mycom.myhouse.domain.HouseDeal">
 		SELECT *
 		FROM housedeal
-		WHERE house_no = #{houseNo};
+		WHERE house_no = #{houseNo}
+		ORDER BY dealYear DESC, dealMonth DESC, dealDay DESC
 	</select>
 	
 </mapper>

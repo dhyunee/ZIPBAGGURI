@@ -12,12 +12,14 @@ import com.mycom.myhouse.domain.HouseDeal;
 public interface HouseDao {
 	
 	List<Address> findSido();
-	List<Address> findGugun(Address address);
-	List<Address> findDong(Address address);
-	Address findAddress(Address address);
+	List<Address> findGugun(String code);
+	List<Address> findDong(String code);
+	Address findAddress(String code);
 	
-	List<House> findHouse(Address address);
+	List<House> findHouseFromGugun(Address address);
+	List<House> findHouseFromDong(Address address);
 	
+	House findHouseInfo(int houseNo);
 	List<HouseDeal> findHouseDeal(int houseNo);
 	
 }
