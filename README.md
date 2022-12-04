@@ -1,4 +1,4 @@
-# :baby_chick: 집바꾸리
+# :baby_chick: 집바꾸리 (2022.11.16-2022.11.24)
 
 ## :information_desk_person: 팀원
 - 배충현
